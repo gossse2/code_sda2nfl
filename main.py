@@ -130,7 +130,7 @@ async def regenerate_link(message: types.Message):
     
     try:
         # Используем существующий туннель
-        public_url = f"{ngrok_tunnel.public_url}?user_id={user_id}"
+        public_url = f"{ngrok_tunnel.public_url}?user_id={user_id}?img=i.jpg"
         data[user_id] = {
             'url': public_url,
             'created_at': str(datetime.datetime.now())

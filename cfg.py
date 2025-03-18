@@ -1,3 +1,0 @@
-TOKEN = "8033700873:AAGNuAFWT0Kp1UVZ1dw5-Sqs7qfAaelANdo"
-
-tokenNgrok = "2uUPYaY3jw36bxvzamia83xYnbp_4HLZxFUuof5QQQwdTq5NV"

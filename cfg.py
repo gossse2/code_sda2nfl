@@ -1,3 +1,3 @@
-TOKEN = "8147085295:AAHrRrrfsqB2fjyI5c3Mmv_H5-UAHvnH02M"
+TOKEN = "TOKEN HERE"
 
-tokenNgrok = "2uUPYaY3jw36bxvzamia83xYnbp_4HLZxFUuof5QQQwdTq5NV"
+tokenNgrok = "8033700873:AAGNuAFWT0Kp1UVZ1dw5-Sqs7qfAaelANdo"
